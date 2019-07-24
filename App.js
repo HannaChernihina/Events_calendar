@@ -18,8 +18,19 @@ function app() {
     const app = document.getElementById('app');
     const table = document.createElement('table');
     const tbody = document.createElement('tbody');
+    const th = document.createElement('th');
+    tbody.appendChild(th);
     table.appendChild(tbody);
     app.appendChild(table);
+
+    // eventTh.forEach(({startDate}) =>{
+    //     const thDate = startDate.getDay();
+    // });
+
+    th.innerText = `test`;
+    th.className = 'table-secondary';
+    table.className = 'table col-3 table-hover';
+
 
     event.forEach(({name, startDate, endDate, id}) => {
         const tr = document.createElement('tr');
@@ -35,6 +46,7 @@ function app() {
         tdClose.innerHTML = '<i class="fas fa-times"></i>';
         tdName.innerText = name;
 
+
         tr.appendChild(tdName);
         tr.appendChild(tdStartDate);
         tr.appendChild(tdEndDate);
@@ -42,7 +54,9 @@ function app() {
         tr.appendChild(tdClose);
 
         tbody.appendChild(tr);
-    })
+
+    });
+
 }
 
 app();
