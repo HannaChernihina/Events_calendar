@@ -16,87 +16,221 @@
 
 window.onload = function () {
 
-    let listEvents = [];
-    if (localStorage.getItem('event') != undefined) {
-        listEvents = JSON.parse(localStorage.getItem('event'));
-        outputEvent();  // вызов отрисовки таблицы чтоб сразу отобразилось
-    };
+    // if (localStorage.getItem('event') != undefined) {
+    //     listEvents = JSON.parse(localStorage.getItem('event'));
+    //     outputEvent();  // вызов отрисовки таблицы чтоб сразу отобразилось
 
-    document.getElementById('add').onclick = function elClick() {
+    const listEvents = [];
+
+    const selectButton = document.getElementById('add');
+
+    // ссылка на улку в разметке
+    const listEventItem = document.getElementById('listEventItem');
+
+// ссылка на обертку инпутов
+    const wprapItemInput = document.getElementById('wprapItemInput');
+    // ссылка на инпут по индификатору
+    const inputName = document.getElementById('inName');
+    const inputDate = document.getElementById('inDate');
+    const inputTimeStart = document.getElementById('inTimeStart');
+    const inputTimeEnd = document.getElementById('inTimeEnd');
+
+
+
+
+// обработчик по клику - получаем значение в инпутах , записываем его в обьект -- записываем в эррей обьект.
+    selectButton.addEventListener('click', () => {
         const evName = document.getElementById('inName').value;
         const evDate = document.getElementById('inDate').value;
         const evTimeStart = document.getElementById('inTimeStart').value;
         const evTimeEnd = document.getElementById('inTimeEnd').value;
-        // {eventName:nameEvent, date: dateEvent}
-        const event = {};
 
-        event.eventName = evName;
-        event.eventDate = evDate;
-        event.eventTimeStart = evTimeStart;
-        event.eventTimeEnd = evTimeEnd;
+        const events = {};
+
+        events.eventName = evName;
+        events.eventDate = evDate;
+        events.eventTimeStart = evTimeStart;
+        events.eventTimeEnd = evTimeEnd;
 
         const i = listEvents.length;
-        listEvents[i] = event;
+        listEvents[i] = events;
+
+        // очищаем инпут после записи в обьект
+        inputName.value = '';
+        inputDate.value = '';
+        inputTimeStart.value = '';
+        inputTimeEnd.value = '';
+
+        // метод записывает в сторедж значение ("ключ", значение ( в локалсоредж хратится только в строке json))
+        localStorage.setItem('events', JSON.stringify(listEvents));
+
         console.log(listEvents);
-        outputEvent();
-        localStorage.setItem('event', JSON.stringify(listEvents));
-    }
+    });
 
-    function outputEvent() {
-        let outName = '';
-        let outDate = '';
-        let outTimeStart = '';
-        let outTimeEnd = '';
 
-        for (let key in listEvents) {
-            outName += listEvents[key].eventName + '\n';
-            outDate += listEvents[key].eventDate + '\n';
-            outTimeStart += listEvents[key].eventTimeStart + '\n';
-            outTimeEnd += listEvents[key].eventTimeEnd + '\n';
-        }
 
-        document.getElementById('boxName').innerText = outName;
-        document.getElementById('boxDate').innerText = outDate;
-        document.getElementById('boxTimeStart').innerText = outTimeStart;
-        document.getElementById('boxTimeEnd').innerText = outTimeEnd;
+// обработчик по нажатию клавиши enter + делегирование события для инпутов  ( обработчик вещаем на обертку) чтоб применилось ко всем
+// (получаем значение в инпутах , записываем его в обьект -- записываем в эррей обьект.)
+    wprapItemInput.addEventListener('keydown' , event => {
+        if (event.key === 'Enter') {
+            const evName = document.getElementById('inName').value;
+            const evDate = document.getElementById('inDate').value;
+            const evTimeStart = document.getElementById('inTimeStart').value;
+            const evTimeEnd = document.getElementById('inTimeEnd').value;
 
-    };
+            const events = {};
+
+            events.eventName = evName;
+            events.eventDate = evDate;
+            events.eventTimeStart = evTimeStart;
+            events.eventTimeEnd = evTimeEnd;
+
+            const i = listEvents.length;
+            listEvents[i] = events;
+
+            // очищаем инпут после записи в обьект
+            inputName.value = '';
+            inputDate.value = '';
+            inputTimeStart.value = '';
+            inputTimeEnd.value = '';
+
+            // метод записывает в сторедж значение ("ключ", значение ( в локалсоредж хратится только в строке json))
+            localStorage.setItem('events', JSON.stringify(listEvents));
+
+            console.log(listEvents);
+        };
+    });
+
+
+
+// <ul class="list-group list-group-flush">
+//         <li class="list-group-item list-group-item-primary">Lorem ipsum dolor sit amet.
+//     <button type="button" class="btn btn-primary btn-sm ">Редактировать</button>
+//         <button type="button" class="btn btn-danger btn-sm ">Удалить</button>
+//         </li>
+//         <li class="list-group-item list-group-item-primary">Lorem ipsum dolor sit amet.
+//     <button type="button" class="btn btn-primary btn-sm ">Редактировать</button>
+//         <button type="button" class="btn btn-danger btn-sm ">Удалить</button>
+//         </li>
+//         <li class="list-group-item list-group-item-primary">Lorem ipsum dolor.
+//     <button type="button" class="btn btn-primary btn-sm ">Редактировать</button>
+//         <button type="button" class="btn btn-danger btn-sm ">Удалить</button>
+//         </li>
+//
+//         </ul>
+
+
+
+
 
 };
 
 
-//     function viewTable() {
-//         const tr = document.getElementById('boxInfo');
-//         tr.appendChild(td);
+
+
+    // if (localStorage.getItem('event') != undefined) {
+    //     listEvents = JSON.parse(localStorage.getItem('event'));
+    //     outputEvent();  // вызов отрисовки таблицы чтоб сразу отобразилось
+    // }
+    // ;
+    //
+    // document.getElementById('add').onclick = function elClick() {
+    //     const evName = document.getElementById('inName').value;
+    //     const evDate = document.getElementById('inDate').value;
+    //     const evTimeStart = document.getElementById('inTimeStart').value;
+    //     const evTimeEnd = document.getElementById('inTimeEnd').value;
+    //     // {eventName:nameEvent, date: dateEvent}
+    //     const event = {};
+    //
+    //     event.eventName = evName;
+    //     event.eventDate = evDate;
+    //     event.eventTimeStart = evTimeStart;
+    //     event.eventTimeEnd = evTimeEnd;
+    //
+    //     const i = listEvents.length;
+    //     listEvents[i] = event;
+    //     console.log(listEvents);
+    //     outputEvent();
+    //     localStorage.setItem('event', JSON.stringify(listEvents));
+    // };
+
+
+    // function outputEvent() {
+    //     const listApp = document.getElementById('listElents');
+    //
+    //
+    //
+    //     listEvents.forEach(renderBox({evName, evDate, evTimeStart, evTimeEnd}) => {
+    //         const ul = document.createElement('ul');
+    //
+    //         const spanName = document.createElement('span');
+    //         const spanDate = document.createElement('span');
+    //         const spanTimeStart = document.createElement('span');
+    //         const spanTimeEnd = document.createElement('span');
+    //
+    //         const spanEdit = document.createElement('span');
+    //         const spanClose = document.createElement('span');
+    //
+    //
+    //         spanName.innerText = evName;
+    //         spanDate.innerText = evDate.getDay();
+    //         spanTimeStart.innerText = `${evTimeStart.getHours()}:${evTimeStart.getMinutes()}`;
+    //         spanTimeEnd.innerText = `${evTimeEnd.getHours()}:${evTimeEnd.getMinutes()}`;
+    //
+    //         spanEdit.innerHTML = '<i class="far fa-edit"></i>';
+    //         spanClose.innerHTML = '<i class="fas fa-times"></i>';
+    //
+    //
+    //         li.appendChild(spanName);
+    //         li.appendChild(spanDate);
+    //         li.appendChild(spanTimeStart);
+    //         li.appendChild(spanTimeEnd);
+    //
+    //         li.appendChild(spanEdit);
+    //         li.appendChild(spanClose);
+    //
+    //         ul.appendChild(li);
+    //         listApp.appendChild(ul);
+    //
+    //     });
+    // };
+
+
+
+
+// let outName = '';
+// let outDate = '';
+// let outTimeStart = '';
+// let outTimeEnd = '';
 //
-//         listEvents.forEach(({name, startDate, endDate, id}) => {
-//             const tr = document.createElement('tr');
-//             const tdName = document.createElement('td');
-//             const tdStartDate = document.createElement('td');
-//             const tdEndDate = document.createElement('td');
-//             const tdIconEdit = document.createElement('td');
-//             const tdClose = document.createElement('td');
+// for (let key in listEvents) {
 //
-//             tdStartDate.innerText = `${startDate.getHours()}:${startDate.getMinutes()}`;
-//             tdEndDate.innerText = `${startDate.getHours()}:${startDate.getMinutes()}`;
-//             tdIconEdit.innerHTML = '<i class="far fa-edit"></i>';
-//             tdClose.innerHTML = '<i class="fas fa-times"></i>';
-//             tdName.innerText = name;
+//     const li = document.createElement('li');
+//     const span = document.createElement('span');
 //
-//
-//             tr.appendChild(tdName);
-//             tr.appendChild(tdStartDate);
-//             tr.appendChild(tdEndDate);
-//             tr.appendChild(tdIconEdit);
-//             tr.appendChild(tdClose);
-//         });
-//
+//     ul.appendChild('li')
+//     li.appendChild('span')
+//     span.appendChild(outName)
+
+
+// outName = outName + listEvents[key].eventName + '\n';
+// outDate = outDate + listEvents[key].eventDate + '\n';
+// outTimeStart = outTimeStart + listEvents[key].eventTimeStart + '\n';
+// outTimeEnd = outTimeEnd + listEvents[key].eventTimeEnd + '\n';
+
+// }
+
+// document.getElementById('boxName').innerText = outName;
+// document.getElementById('boxDate').innerText = outDate;
+// document.getElementById('boxTimeStart').innerText = outTimeStart;
+// document.getElementById('boxTimeEnd').innerText = outTimeEnd;
+
 //     };
+//
 //
 // };
 
 
-//
 // function app() {
 //     const app = document.getElementById('app');
 //     const table = document.createElement('table');

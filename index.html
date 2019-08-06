@@ -20,49 +20,57 @@
 <!--<div id="app"></div>-->
 
 <form id="formList">
-    <div class="form-group col-6">
-    <div class="row">
-        <div class="col">
-            <label >Название</label>
-            <input id="inName" type="text"  class="form-control" >
+    <div class="form-group col-6" id="wprapItemInput">
+        <div class="row">
+            <div class="col">
+                <label>Название</label>
+                <input id="inName" type="text" class="form-control">
+            </div>
+            <div class="col">
+                <label>Дата</label>
+                <input id="inDate" type="text" class="form-control">
+            </div>
         </div>
-        <div class="col">
-            <label >Дата</label>
-            <input id="inDate" type="text" class="form-control">
+        <div class="row">
+            <div class="col">
+                <label>Время начала</label>
+                <input id="inTimeStart" type="text" class="form-control">
+            </div>
+            <div class="col">
+                <label>Время конца</label>
+                <input id="inTimeEnd" type="text" class="form-control">
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <label >Время начала</label>
-            <input id="inTimeStart" type="text"  class="form-control">
-        </div>
-        <div class="col">
-            <label >Время конца</label>
-            <input id="inTimeEnd" type="text" class="form-control">
-        </div>
-    </div>
     </div>
     <div class="d-flex justify-content-end col-6">
-    <button type="button" id="add" class="btn btn-primary" name="submit_value" >Отправить</button>
+        <button type="button" id="add" class="btn btn-primary" name="submit_value">Отправить</button>
     </div>
 </form>
 
 
-<table class="table col-3 table-hover">
-    <tbody>
-    <tr>
-        <th></th>
-    </tr>
-    <tr>
-        <td id="boxName"></td>
-        <td id="boxDate"></td>
-        <td id="boxTimeStart"></td>
-        <td id="boxTimeEnd"></td>
-        <td id="boxEdit"></td>
-        <td id="boxClose"></td>
-    </tr>
-    </tbody>
-</table>
+<ul class="list-group list-group-flush" id="listEventItem">
+
+</ul>
+
+<!--<div id="listElents">-->
+
+<!--</div>-->
+
+<!--<table class="table col-3 table-hover">-->
+<!--    <tbody id="listInfo">-->
+<!--    <tr>-->
+<!--        <th></th>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--        <td id="boxName"></td>-->
+<!--        <td id="boxDate"></td>-->
+<!--        <td id="boxTimeStart"></td>-->
+<!--        <td id="boxTimeEnd"></td>-->
+<!--        <td id="boxEdit"></td>-->
+<!--        <td id="boxClose"></td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
 
 
 <script src="App.js"></script>
