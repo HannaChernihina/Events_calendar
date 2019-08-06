@@ -25,7 +25,7 @@ window.onload = function () {
     const selectButton = document.getElementById('add');
 
     // ссылка на улку в разметке
-    const listEventItem = document.getElementById('listEventItem');
+    const ulListEvent = document.getElementById('listEventItem');
 
 // ссылка на обертку инпутов
     const wprapItemInput = document.getElementById('wprapItemInput');
@@ -34,8 +34,6 @@ window.onload = function () {
     const inputDate = document.getElementById('inDate');
     const inputTimeStart = document.getElementById('inTimeStart');
     const inputTimeEnd = document.getElementById('inTimeEnd');
-
-
 
 
 // обработчик по клику - получаем значение в инпутах , записываем его в обьект -- записываем в эррей обьект.
@@ -68,10 +66,9 @@ window.onload = function () {
     });
 
 
-
 // обработчик по нажатию клавиши enter + делегирование события для инпутов  ( обработчик вещаем на обертку) чтоб применилось ко всем
 // (получаем значение в инпутах , записываем его в обьект -- записываем в эррей обьект.)
-    wprapItemInput.addEventListener('keydown' , event => {
+    wprapItemInput.addEventListener('keydown', event => {
         if (event.key === 'Enter') {
             const evName = document.getElementById('inName').value;
             const evDate = document.getElementById('inDate').value;
@@ -98,15 +95,64 @@ window.onload = function () {
             localStorage.setItem('events', JSON.stringify(listEvents));
 
             console.log(listEvents);
-        };
+        }
+        ;
     });
 
+// отрисовка таблицы
+
+//     создаем домелемент
+    const liElement = document.createElement('li');
+    liElement.className = 'list-group-item';
+
+    // добавили в дом-дерево
+    ulListEvent.appendChild(liElement);
+
+    const divElement = document.createElement('div');
+    divElement.className = 'wrapOptions';
+    liElement.appendChild(divElement);
 
 
-// <ul class="list-group list-group-flush">
-//         <li class="list-group-item list-group-item-primary">Lorem ipsum dolor sit amet.
-//     <button type="button" class="btn btn-primary btn-sm ">Редактировать</button>
+    const spanName = document.createElement('span');
+    spanName.className = 'informationCeil';
+    spanName.innerText = 'event111';
+    const spanDate = document.createElement('span');
+    spanDate.className = 'informationCeil';
+    spanDate.innerText = 'event2';
+    const spanTimeStart = document.createElement('span');
+    spanTimeStart.className = 'informationCeil';
+    spanTimeStart.innerText = 'event3';
+    const spanTimeEnd = document.createElement('span');
+    spanTimeEnd.className = 'informationCeil';
+    spanTimeEnd.innerText = 'event4';
+
+
+    const buttonEdit = document.createElement('button');
+    buttonEdit.className = 'btn btn btn-light btn-sm informationCeil';
+    buttonEdit.type = 'button';
+    buttonEdit.innerHTML = '<i class="far fa-edit"></i>';
+    const buttonClose = document.createElement('button');
+    buttonClose.className = 'btn btn btn-light btn-sm informationCeil';
+    buttonClose.type = 'button';
+    buttonClose.innerHTML = '<i class="fas fa-times"></i>';
+
+
+    divElement.appendChild(spanName);
+    divElement.appendChild(spanDate);
+    divElement.appendChild(spanTimeStart);
+    divElement.appendChild(spanTimeEnd);
+
+    divElement.appendChild(buttonEdit);
+    divElement.appendChild(buttonClose);
+
+
+// <ul class="list-group">
+//         <li class="list-group-item list-group-item-primary">
+//         <div>
+//         Lorem ipsum dolor sit amet.
+//         <button type="button" class="btn btn-primary btn-sm ">Редактировать</button>
 //         <button type="button" class="btn btn-danger btn-sm ">Удалить</button>
+//         </div>
 //         </li>
 //         <li class="list-group-item list-group-item-primary">Lorem ipsum dolor sit amet.
 //     <button type="button" class="btn btn-primary btn-sm ">Редактировать</button>
@@ -120,82 +166,75 @@ window.onload = function () {
 //         </ul>
 
 
-
-
-
 };
 
 
+// if (localStorage.getItem('event') != undefined) {
+//     listEvents = JSON.parse(localStorage.getItem('event'));
+//     outputEvent();  // вызов отрисовки таблицы чтоб сразу отобразилось
+// }
+// ;
+//
+// document.getElementById('add').onclick = function elClick() {
+//     const evName = document.getElementById('inName').value;
+//     const evDate = document.getElementById('inDate').value;
+//     const evTimeStart = document.getElementById('inTimeStart').value;
+//     const evTimeEnd = document.getElementById('inTimeEnd').value;
+//     // {eventName:nameEvent, date: dateEvent}
+//     const event = {};
+//
+//     event.eventName = evName;
+//     event.eventDate = evDate;
+//     event.eventTimeStart = evTimeStart;
+//     event.eventTimeEnd = evTimeEnd;
+//
+//     const i = listEvents.length;
+//     listEvents[i] = event;
+//     console.log(listEvents);
+//     outputEvent();
+//     localStorage.setItem('event', JSON.stringify(listEvents));
+// };
 
 
-    // if (localStorage.getItem('event') != undefined) {
-    //     listEvents = JSON.parse(localStorage.getItem('event'));
-    //     outputEvent();  // вызов отрисовки таблицы чтоб сразу отобразилось
-    // }
-    // ;
-    //
-    // document.getElementById('add').onclick = function elClick() {
-    //     const evName = document.getElementById('inName').value;
-    //     const evDate = document.getElementById('inDate').value;
-    //     const evTimeStart = document.getElementById('inTimeStart').value;
-    //     const evTimeEnd = document.getElementById('inTimeEnd').value;
-    //     // {eventName:nameEvent, date: dateEvent}
-    //     const event = {};
-    //
-    //     event.eventName = evName;
-    //     event.eventDate = evDate;
-    //     event.eventTimeStart = evTimeStart;
-    //     event.eventTimeEnd = evTimeEnd;
-    //
-    //     const i = listEvents.length;
-    //     listEvents[i] = event;
-    //     console.log(listEvents);
-    //     outputEvent();
-    //     localStorage.setItem('event', JSON.stringify(listEvents));
-    // };
-
-
-    // function outputEvent() {
-    //     const listApp = document.getElementById('listElents');
-    //
-    //
-    //
-    //     listEvents.forEach(renderBox({evName, evDate, evTimeStart, evTimeEnd}) => {
-    //         const ul = document.createElement('ul');
-    //
-    //         const spanName = document.createElement('span');
-    //         const spanDate = document.createElement('span');
-    //         const spanTimeStart = document.createElement('span');
-    //         const spanTimeEnd = document.createElement('span');
-    //
-    //         const spanEdit = document.createElement('span');
-    //         const spanClose = document.createElement('span');
-    //
-    //
-    //         spanName.innerText = evName;
-    //         spanDate.innerText = evDate.getDay();
-    //         spanTimeStart.innerText = `${evTimeStart.getHours()}:${evTimeStart.getMinutes()}`;
-    //         spanTimeEnd.innerText = `${evTimeEnd.getHours()}:${evTimeEnd.getMinutes()}`;
-    //
-    //         spanEdit.innerHTML = '<i class="far fa-edit"></i>';
-    //         spanClose.innerHTML = '<i class="fas fa-times"></i>';
-    //
-    //
-    //         li.appendChild(spanName);
-    //         li.appendChild(spanDate);
-    //         li.appendChild(spanTimeStart);
-    //         li.appendChild(spanTimeEnd);
-    //
-    //         li.appendChild(spanEdit);
-    //         li.appendChild(spanClose);
-    //
-    //         ul.appendChild(li);
-    //         listApp.appendChild(ul);
-    //
-    //     });
-    // };
-
-
+// function outputEvent() {
+//     const listApp = document.getElementById('listElents');
+//
+//
+//
+//     listEvents.forEach(renderBox({evName, evDate, evTimeStart, evTimeEnd}) => {
+//         const ul = document.createElement('ul');
+//
+//         const spanName = document.createElement('span');
+//         const spanDate = document.createElement('span');
+//         const spanTimeStart = document.createElement('span');
+//         const spanTimeEnd = document.createElement('span');
+//
+//         const spanEdit = document.createElement('span');
+//         const spanClose = document.createElement('span');
+//
+//
+//         spanName.innerText = evName;
+//         spanDate.innerText = evDate.getDay();
+//         spanTimeStart.innerText = `${evTimeStart.getHours()}:${evTimeStart.getMinutes()}`;
+//         spanTimeEnd.innerText = `${evTimeEnd.getHours()}:${evTimeEnd.getMinutes()}`;
+//
+//         spanEdit.innerHTML = '<i class="far fa-edit"></i>';
+//         spanClose.innerHTML = '<i class="fas fa-times"></i>';
+//
+//
+//         li.appendChild(spanName);
+//         li.appendChild(spanDate);
+//         li.appendChild(spanTimeStart);
+//         li.appendChild(spanTimeEnd);
+//
+//         li.appendChild(spanEdit);
+//         li.appendChild(spanClose);
+//
+//         ul.appendChild(li);
+//         listApp.appendChild(ul);
+//
+//     });
+// };
 
 
 // let outName = '';
