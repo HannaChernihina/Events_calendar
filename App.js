@@ -21,6 +21,7 @@ window.onload = function () {
     //     outputEvent();  // вызов отрисовки таблицы чтоб сразу отобразилось
 
     const listEvents = [];
+    const events = {};
 
     const selectButton = document.getElementById('add');
 
@@ -43,7 +44,7 @@ window.onload = function () {
         const evTimeStart = document.getElementById('inTimeStart').value;
         const evTimeEnd = document.getElementById('inTimeEnd').value;
 
-        const events = {};
+
 
         events.eventName = evName;
         events.eventDate = evDate;
@@ -60,9 +61,10 @@ window.onload = function () {
         inputTimeEnd.value = '';
 
         // метод записывает в сторедж значение ("ключ", значение ( в локалсоредж хратится только в строке json))
-        localStorage.setItem('events', JSON.stringify(listEvents));
+        // localStorage.setItem('events', JSON.stringify(listEvents));
 
         console.log(listEvents);
+        upgradeViewData();
     });
 
 
@@ -75,7 +77,7 @@ window.onload = function () {
             const evTimeStart = document.getElementById('inTimeStart').value;
             const evTimeEnd = document.getElementById('inTimeEnd').value;
 
-            const events = {};
+
 
             events.eventName = evName;
             events.eventDate = evDate;
@@ -92,80 +94,68 @@ window.onload = function () {
             inputTimeEnd.value = '';
 
             // метод записывает в сторедж значение ("ключ", значение ( в локалсоредж хратится только в строке json))
-            localStorage.setItem('events', JSON.stringify(listEvents));
+            // localStorage.setItem('events', JSON.stringify(listEvents));
 
             console.log(listEvents);
+            upgradeViewData();
         }
-        ;
+
     });
 
+
 // отрисовка таблицы
+    function upgradeViewData() {
+        for (const eventsItem in events) {
+
+// очищаем весь дом от содержимого при каждой итерациии
+            ulListEvent.innerHTML = '';
 
 //     создаем домелемент
-    const liElement = document.createElement('li');
-    liElement.className = 'list-group-item';
+            const liElement = document.createElement('li');
+            liElement.className = 'list-group-item';
 
-    // добавили в дом-дерево
-    ulListEvent.appendChild(liElement);
+            // добавили в дом-дерево
+            ulListEvent.appendChild(liElement);
 
-    const divElement = document.createElement('div');
-    divElement.className = 'wrapOptions';
-    liElement.appendChild(divElement);
+            const divElement = document.createElement('div');
+            divElement.className = 'wrapOptions';
+            liElement.appendChild(divElement);
 
-
-    const spanName = document.createElement('span');
-    spanName.className = 'informationCeil';
-    spanName.innerText = 'event111';
-    const spanDate = document.createElement('span');
-    spanDate.className = 'informationCeil';
-    spanDate.innerText = 'event2';
-    const spanTimeStart = document.createElement('span');
-    spanTimeStart.className = 'informationCeil';
-    spanTimeStart.innerText = 'event3';
-    const spanTimeEnd = document.createElement('span');
-    spanTimeEnd.className = 'informationCeil';
-    spanTimeEnd.innerText = 'event4';
-
-
-    const buttonEdit = document.createElement('button');
-    buttonEdit.className = 'btn btn btn-light btn-sm informationCeil';
-    buttonEdit.type = 'button';
-    buttonEdit.innerHTML = '<i class="far fa-edit"></i>';
-    const buttonClose = document.createElement('button');
-    buttonClose.className = 'btn btn btn-light btn-sm informationCeil';
-    buttonClose.type = 'button';
-    buttonClose.innerHTML = '<i class="fas fa-times"></i>';
+// отрисовка данных из инпута
+            const spanName = document.createElement('span');
+            spanName.className = 'informationCeil';
+            spanName.innerText = events[eventsItem];
+            const spanDate = document.createElement('span');
+            spanDate.className = 'informationCeil';
+            spanDate.innerText = 'event2';
+            const spanTimeStart = document.createElement('span');
+            spanTimeStart.className = 'informationCeil';
+            spanTimeStart.innerText = 'event3';
+            const spanTimeEnd = document.createElement('span');
+            spanTimeEnd.className = 'informationCeil';
+            spanTimeEnd.innerText = 'event4';
 
 
-    divElement.appendChild(spanName);
-    divElement.appendChild(spanDate);
-    divElement.appendChild(spanTimeStart);
-    divElement.appendChild(spanTimeEnd);
-
-    divElement.appendChild(buttonEdit);
-    divElement.appendChild(buttonClose);
-
-
-// <ul class="list-group">
-//         <li class="list-group-item list-group-item-primary">
-//         <div>
-//         Lorem ipsum dolor sit amet.
-//         <button type="button" class="btn btn-primary btn-sm ">Редактировать</button>
-//         <button type="button" class="btn btn-danger btn-sm ">Удалить</button>
-//         </div>
-//         </li>
-//         <li class="list-group-item list-group-item-primary">Lorem ipsum dolor sit amet.
-//     <button type="button" class="btn btn-primary btn-sm ">Редактировать</button>
-//         <button type="button" class="btn btn-danger btn-sm ">Удалить</button>
-//         </li>
-//         <li class="list-group-item list-group-item-primary">Lorem ipsum dolor.
-//     <button type="button" class="btn btn-primary btn-sm ">Редактировать</button>
-//         <button type="button" class="btn btn-danger btn-sm ">Удалить</button>
-//         </li>
-//
-//         </ul>
+            const buttonEdit = document.createElement('button');
+            buttonEdit.className = 'btn btn btn-light btn-sm informationCeil';
+            buttonEdit.type = 'button';
+            buttonEdit.innerHTML = '<i class="far fa-edit"></i>';
+            const buttonClose = document.createElement('button');
+            buttonClose.className = 'btn btn btn-light btn-sm informationCeil';
+            buttonClose.type = 'button';
+            buttonClose.innerHTML = '<i class="fas fa-times"></i>';
 
 
+            divElement.append(spanName);
+            divElement.append(spanDate);
+            divElement.append(spanTimeStart);
+            divElement.append(spanTimeEnd);
+
+            divElement.appendChild(buttonEdit);
+            divElement.appendChild(buttonClose);
+
+        }
+    }
 };
 
 
