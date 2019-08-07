@@ -105,10 +105,10 @@ window.onload = function () {
 
 // отрисовка таблицы
     function upgradeViewData() {
-        for (const eventsItem in events) {
+
 
 // очищаем весь дом от содержимого при каждой итерациии
-            ulListEvent.innerHTML = '';
+//             ulListEvent.innerHTML = '';
 
 //     создаем домелемент
             const liElement = document.createElement('li');
@@ -124,7 +124,7 @@ window.onload = function () {
 // отрисовка данных из инпута
             const spanName = document.createElement('span');
             spanName.className = 'informationCeil';
-            spanName.innerText = events[eventsItem];
+            spanName.innerHTML = 1;
             const spanDate = document.createElement('span');
             spanDate.className = 'informationCeil';
             spanDate.innerText = 'event2';
@@ -155,7 +155,7 @@ window.onload = function () {
             divElement.appendChild(buttonClose);
 
         }
-    }
+
 };
 
 
