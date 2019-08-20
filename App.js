@@ -106,55 +106,61 @@ window.onload = function () {
 // отрисовка таблицы
     function upgradeViewData() {
 
+        listEvents.forEach( function(evName, evDate, evTimeStart, evTimeEnd) {
+
+            for (let key in events ) {
+
 
 // очищаем весь дом от содержимого при каждой итерациии
-//             ulListEvent.innerHTML = '';
+            ulListEvent.innerHTML = '';
 
 //     создаем домелемент
-            const liElement = document.createElement('li');
-            liElement.className = 'list-group-item';
+                const liElement = document.createElement('li');
+                liElement.className = 'list-group-item';
 
-            // добавили в дом-дерево
-            ulListEvent.appendChild(liElement);
+                // добавили в дом-дерево
+                ulListEvent.appendChild(liElement);
 
-            const divElement = document.createElement('div');
-            divElement.className = 'wrapOptions';
-            liElement.appendChild(divElement);
+                const divElement = document.createElement('div');
+                divElement.className = 'wrapOptions';
+                liElement.appendChild(divElement);
 
 // отрисовка данных из инпута
-            const spanName = document.createElement('span');
-            spanName.className = 'informationCeil';
-            spanName.innerHTML = 1;
-            const spanDate = document.createElement('span');
-            spanDate.className = 'informationCeil';
-            spanDate.innerText = 'event2';
-            const spanTimeStart = document.createElement('span');
-            spanTimeStart.className = 'informationCeil';
-            spanTimeStart.innerText = 'event3';
-            const spanTimeEnd = document.createElement('span');
-            spanTimeEnd.className = 'informationCeil';
-            spanTimeEnd.innerText = 'event4';
+                const spanName = document.createElement('span');
+                spanName.className = 'informationCeil';
+                spanName.innerHTML = events.eventName;
+                const spanDate = document.createElement('span');
+                spanDate.className = 'informationCeil';
+                spanDate.innerText = events.eventDate;
+                const spanTimeStart = document.createElement('span');
+                spanTimeStart.className = 'informationCeil';
+                spanTimeStart.innerText = events.eventTimeStart;
+                const spanTimeEnd = document.createElement('span');
+                spanTimeEnd.className = 'informationCeil';
+                spanTimeEnd.innerText = events.eventTimeEnd;
 
 
-            const buttonEdit = document.createElement('button');
-            buttonEdit.className = 'btn btn btn-light btn-sm informationCeil';
-            buttonEdit.type = 'button';
-            buttonEdit.innerHTML = '<i class="far fa-edit"></i>';
-            const buttonClose = document.createElement('button');
-            buttonClose.className = 'btn btn btn-light btn-sm informationCeil';
-            buttonClose.type = 'button';
-            buttonClose.innerHTML = '<i class="fas fa-times"></i>';
+                const buttonEdit = document.createElement('button');
+                buttonEdit.className = 'btn btn btn-light btn-sm informationCeil';
+                buttonEdit.type = 'button';
+                buttonEdit.innerHTML = '<i class="far fa-edit"></i>';
+                const buttonClose = document.createElement('button');
+                buttonClose.className = 'btn btn btn-light btn-sm informationCeil';
+                buttonClose.type = 'button';
+                buttonClose.innerHTML = '<i class="fas fa-times"></i>';
 
 
-            divElement.append(spanName);
-            divElement.append(spanDate);
-            divElement.append(spanTimeStart);
-            divElement.append(spanTimeEnd);
+                divElement.append(spanName);
+                divElement.append(spanDate);
+                divElement.append(spanTimeStart);
+                divElement.append(spanTimeEnd);
 
-            divElement.appendChild(buttonEdit);
-            divElement.appendChild(buttonClose);
+                divElement.appendChild(buttonEdit);
+                divElement.appendChild(buttonClose);
+            }
+        });
 
-        }
+    };
 
 };
 
