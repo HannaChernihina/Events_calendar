@@ -106,9 +106,10 @@ window.onload = function () {
 // отрисовка таблицы
     function upgradeViewData() {
 
-
+// наверное цикл с шагом нужен
 // очищаем весь дом от содержимого при каждой итерациии
 //             ulListEvent.innerHTML = '';
+
 
 //     создаем домелемент
             const liElement = document.createElement('li');
