@@ -45,7 +45,6 @@ window.onload = function () {
         const evTimeEnd = document.getElementById('inTimeEnd').value;
 
 
-
         events.eventName = evName;
         events.eventDate = evDate;
         events.eventTimeStart = evTimeStart;
@@ -78,7 +77,6 @@ window.onload = function () {
             const evTimeEnd = document.getElementById('inTimeEnd').value;
 
 
-
             events.eventName = evName;
             events.eventDate = evDate;
             events.eventTimeStart = evTimeStart;
@@ -106,13 +104,14 @@ window.onload = function () {
 // отрисовка таблицы
     function upgradeViewData() {
 
-        listEvents.forEach( function(evName, evDate, evTimeStart, evTimeEnd) {
+        // listEvents.forEach( function(evName, evDate, evTimeStart, evTimeEnd) {
+        for (let obj = 0; obj < listEvents.length; obj++) {
 
-            for (let key in events ) {
 
 
 // очищаем весь дом от содержимого при каждой итерациии
-            ulListEvent.innerHTML = '';
+//                 ulListEvent.innerHTML = '';
+
 
 //     создаем домелемент
                 const liElement = document.createElement('li');
@@ -150,15 +149,19 @@ window.onload = function () {
                 buttonClose.innerHTML = '<i class="fas fa-times"></i>';
 
 
-            divElement.append(spanName);
-            divElement.append(spanDate);
-            divElement.append(spanTimeStart);
-            divElement.append(spanTimeEnd);
+                divElement.append(spanName);
+                divElement.append(spanDate);
+                divElement.append(spanTimeStart);
+                divElement.append(spanTimeEnd);
 
-            divElement.appendChild(buttonEdit);
-            divElement.appendChild(buttonClose);
+                divElement.appendChild(buttonEdit);
+                divElement.appendChild(buttonClose);
 
-        }
+            }
+
+
+
+    }
 
 };
 
