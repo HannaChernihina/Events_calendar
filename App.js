@@ -62,7 +62,7 @@ window.onload = function () {
         // метод записывает в сторедж значение ("ключ", значение ( в локалсоредж хратится только в строке json))
         // localStorage.setItem('events', JSON.stringify(listEvents));
 
-        console.log(listEvents);
+        //console.log(listEvents);
         upgradeViewData();
     });
 
@@ -83,7 +83,9 @@ window.onload = function () {
             events.eventTimeEnd = evTimeEnd;
 
             const i = listEvents.length;
-            listEvents[i] = events;
+
+            listEvents.push(events);
+            //listEvents[i] = events;
 
             // очищаем инпут после записи в обьект
             inputName.value = '';
@@ -105,12 +107,13 @@ window.onload = function () {
     function upgradeViewData() {
 
         // listEvents.forEach( function(evName, evDate, evTimeStart, evTimeEnd) {
+        ulListEvent.innerHTML = '';
         for (let obj = 0; obj < listEvents.length; obj++) {
-
+            console.log(listEvents[obj]);
 
 
 // очищаем весь дом от содержимого при каждой итерациии
-//                 ulListEvent.innerHTML = '';
+
 
 
 //     создаем домелемент
