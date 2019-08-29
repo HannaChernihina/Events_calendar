@@ -16,92 +16,43 @@
 
 </head>
 <body>
-    <div id="events">
 
-    </div>
-    <div class="wrappForm">
-        <form id="formList">
-            <div class="form-group col-12" id="wprapItemInput">
-                <div class="row">
-                    <div class="col">
-                        <label>Название</label>
-                        <input id="inName" type="text" class="form-control">
-                    </div>
-                    <div class="col">
-                        <label>Дата</label>
-                        <input id="inDate" type="text" class="form-control">
-                    </div>
+<!--вывод таблицы мероприятий-->
+<div id="events"></div>
+
+<!--разметка формы -->
+<div class="wrappForm">
+    <form id="formList">
+        <div class="form-group col-12" id="wprapItemInput">
+            <div class="row">
+                <div class="col">
+                    <label>Название</label>
+                    <input id="inName" type="text" class="form-control">
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <label>Время начала</label>
-                        <input id="inTimeStart" type="text" class="form-control">
-                    </div>
-                    <div class="col">
-                        <label>Время конца</label>
-                        <input id="inTimeEnd" type="text" class="form-control">
-                    </div>
+                <div class="col">
+                    <label>Дата</label>
+                    <input id="inDate" type="text" class="form-control">
                 </div>
             </div>
-            <div class="d-flex justify-content-end col-12">
-                <button type="button" id="add" class="btn btn-primary" name="submit_value">Отправить</button>
+            <div class="row">
+                <div class="col">
+                    <label>Время начала</label>
+                    <input id="inTimeStart" type="text" class="form-control">
+                </div>
+                <div class="col">
+                    <label>Время конца</label>
+                    <input id="inTimeEnd" type="text" class="form-control">
+                </div>
             </div>
-        </form>
-    </div>
-    <script>
-        let tasks = [];
+        </div>
+        <div class="d-flex justify-content-end col-12">
+            <button type="button" id="add" class="btn btn-primary" name="submit_value">Отправить</button>
+        </div>
+    </form>
+</div>
+<!--разметка формы -->
 
-        window.onload = function () {
-            let wprapItemInput = document.getElementById('add');
 
-                wprapItemInput.addEventListener('click', event => {
-                    let inputName = document.getElementById('inName').value,
-                        inputDate = document.getElementById('inDate').value,
-                        inputTimeStart = document.getElementById('inTimeStart').value,
-                        inputTimeEnd = document.getElementById('inTimeEnd').value;
-
-                    //if (inputName.length)
-
-                    tasks.push({
-                       taskName : inputName,
-                       date : inputDate,
-                       timeStart : inputTimeStart,
-                       timeEnd : inputTimeEnd
-                    });
-
-                    let eventsBlock = document.getElementById("events");
-
-                    eventsBlock.innerHTML = '';
-                    for(let i = 0; i < tasks.length; i++) {
-                        let task = tasks[i];
-
-                        let spanName = document.createElement('span');
-                        spanName.className = 'informationCeil';
-                        spanName.innerHTML = task.taskName;
-
-                        let spanDate = document.createElement('span');
-                        spanDate.className = 'informationCeil';
-                        spanDate.innerText = task.date;
-
-                        let spanTimeStart = document.createElement('span');
-                        spanTimeStart.className = 'informationCeil';
-                        spanTimeStart.innerText = task.timeStart;
-
-                        let spanTimeEnd = document.createElement('span');
-                        spanTimeEnd.className = 'informationCeil';
-                        spanTimeEnd.innerText = task.timeEnd;
-
-                        let divElement = document.createElement('div');
-
-                        divElement.append(spanName);
-                        divElement.append(spanDate);
-                        divElement.append(spanTimeStart);
-                        divElement.append(spanTimeEnd);
-
-                        eventsBlock.append(divElement);
-                    }
-                });
-        }
-    </script>
+<script src="app_js_new.js"></script>
 </body>
 </html>
