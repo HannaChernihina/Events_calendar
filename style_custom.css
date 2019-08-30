@@ -4,6 +4,19 @@
     display: flex;
     margin: 15px;
 }
-.informationCeil { margin: 5px;}
 
-.ceilEvents { width: 35%;}
+.informationCeil {
+    margin: 5px;
+}
+
+.ceilEvents {
+    width: 35%;
+}
+
+.nameCeil {
+}
+
+.wrappBox {
+    border: 1px solid #eeebeb;
+    border-radius: 3px;
+}

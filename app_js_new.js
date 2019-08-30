@@ -38,7 +38,7 @@ function dataOutput() {
         let task = tasks[i];
 
         let spanName = document.createElement('span');
-        spanName.className = 'informationCeil';
+        spanName.className = 'nameCeil informationCeil';
         spanName.innerHTML = task.taskName;
 
         let spanDate = document.createElement('span');
@@ -54,12 +54,27 @@ function dataOutput() {
         spanTimeEnd.innerText = task.timeEnd;
 
         let divElement = document.createElement('div');
-        divElement.className = "list-group-item";
+        divElement.className = "wrappBox";
+
+
+        let buttonEdit = document.createElement('button');
+        buttonEdit.className = 'btn btn btn-light btn-sm informationCeil';
+        buttonEdit.type = 'button';
+        buttonEdit.innerHTML = '<i class="far fa-edit"></i>';
+        let buttonClose = document.createElement('button');
+        buttonClose.className = 'btn btn btn-light btn-sm informationCeil';
+        buttonClose.type = 'button';
+        buttonClose.innerHTML = '<i class="fas fa-times"></i>';
+
+
 
         divElement.append(spanName);
         divElement.append(spanDate);
         divElement.append(spanTimeStart);
         divElement.append(spanTimeEnd);
+
+        divElement.append(buttonEdit);
+        divElement.append(buttonClose);
 
         eventsBlock.append(divElement);
     }
