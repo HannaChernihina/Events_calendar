@@ -82,6 +82,7 @@ function dataOutput() {
 
 
 window.onload = function () {
+
     let wprapItemInput = document.getElementById('add');
 
 
@@ -91,7 +92,15 @@ window.onload = function () {
         pushInfo();
         // отрисовка таблицы
         dataOutput();
-
-
     });
+
+    // что.то не так . пересмотреть
+    wprapItemInput.addEventListener('keydown', event => {
+        if (event.key === 'Enter') {
+            pushInfo();
+            dataOutput();
+        }
+    });
+
+
 }
